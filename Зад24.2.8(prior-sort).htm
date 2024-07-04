@@ -1,0 +1,85 @@
+﻿<!DOCTYPE HTML><html lang="ru"><head>	<meta charset="UTF-8">				
+<title>Зад24.2.8(prior-sort)</title>	</head>
+<style>.sBox{background:mistyrose; width:65%;padding:10px; margin:0 auto;}
+*{font-size:16px;font-family:Sans-serif;}
+h3{text-align:center;text-decoration:underline;text-underline-position:under;textUnderlinePosition='under';}
+.bold {font-weight:800;}
+</style>
+<body>
+<div class="sBox"> 
+<h3>Задание 24.2.8 (самопроверка)</h3>
+Напишите функцию с использованием подходящих структур данных, которая принимает два массива: <br>
+первый — с элементами, второй — с приоритетом элементов (каждый -й элемент второго массива задаёт <br>
+приоритет -му элементу первого массива).
+<p>
+Отсортируйте и верните структуру данных с элементами из первого массива в соответствии с приоритетами <br>
+из второго массива.
+</p>
+Приоритеты во втором массиве имеют значения от  до количества элементов в первом массиве. <br>
+Приоритеты не повторяются.
+<p>
+function reorder(array, order) {
+  // your code here...
+}
+</p>
+reorder(['A', 'B', 'C'], [3, 1, 2]);  // 'B', 'C', 'A'<br>
+const obj = {};<br>
+reorder([obj, obj, 1, 1], [1, 3, 4, 2]);  // obj, 1, obj, 1<br>
+reorder([5, 3, 5, 8, 2, 1, 6], [5, 3, 4, 7, 2, 1, 6]);  // 1, 2, 3, 5, 5, 6, 8<br>
+</div>
+<script>
+
+function reorder(array, order) {
+  // your code here...
+let maxIndex = 0, swapAux = 0;
+const arrLength = order.length, arrLengthMinusOne = arrLength - 1;
+
+for (let j=0;j<arrLengthMinusOne;j++){
+	// minimum of subarray
+	swapAux = order[j]; maxIndex = j;
+	for (let i=j;i<arrLength;i++){
+		if (order[i]<swapAux){swapAux=order[i]; maxIndex=i;}
+	};
+	// swap max found with array[j]
+   if (maxIndex != j) {
+	swapAux = order[j];	order[j] = order[maxIndex];	order[maxIndex] = swapAux;
+	swapAux = array[j];	array[j] = array[maxIndex];	array[maxIndex] = swapAux;
+   };
+};
+return array;
+};
+
+// test examples:
+console.log(reorder(['A', 'B', 'C'], [3, 1, 2]));  // 'B', 'C', 'A'
+console.log(reorder(['A3', 'B1', 'C2', 'D5', 'E4', 'F6'], [3, 1, 2, 5, 4, 6])); // B C A E D F
+const obj = {};
+console.log(reorder([obj, obj, 1, 1], [1, 3, 4, 2]));  // obj, 1, obj, 1
+console.log(reorder([5, 3, 5, 8, 2, 1, 6], [5, 3, 4, 7, 2, 1, 6])); // 1, 2, 3, 5, 5, 6, 8
+
+/*
+// selection sort alg common implementation
+function sortSel(arrToSort) {
+const arrLength = arrToSort.length, arrLengthMinusOne = arrLength - 1;
+let maxIndex = 0, swapAux = 0, arrResult = []; 
+			       arrToSort.forEach((i)=>{arrResult.push(i);});
+for (let j=0;j<arrLengthMinusOne;j++){
+	// maximum of subarray
+	swapAux = arrResult[j]; maxIndex = j;
+	for (let i=j;i<arrLength;i++){
+		if (arrResult[i]>swapAux){swapAux=arrResult[i]; maxIndex=i;}
+	};
+	// swap max with eArr[j]
+   if (maxIndex != j) {
+	swapAux = arrResult[j];	arrResult[j] = arrResult[maxIndex];	arrResult[maxIndex] = swapAux;}
+};
+return arrResult;
+};
+
+// selection sort alg test sample 
+//          0  1  2  3  4   5  6   7   8  9  10
+let eArr = [3, 1, 2, 5, 10, 8, 0 , 4, 14, 6, 9];	console.log('eArr before: ',eArr);
+							console.log('eArr after: ',sortSel(eArr));	
+*/
+</script>
+
+</body></html>

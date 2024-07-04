@@ -1,0 +1,51 @@
+﻿<!DOCTYPE HTML><html lang="ru"><head>	<meta charset="UTF-8">	
+<meta name="viewport" content="width=device-width, initial-scale=1.0">			
+<title>Зад24.2.6(deduplicate)</title>	</head>
+<style>*{font-size:16px;font-family:Sans-serif;}
+h3{text-decoration:underline;text-underline-position:under;textUnderlinePosition='under'}</style>
+<body>
+<div>
+<h3>Задание 24.2.6 (самопроверка)</h3>
+Напишите функцию для удаления дубликатов из массива с использованием подходящих структур данных:<br>
+<br>
+function deduplicate(array) {<br>
+  // your code here...<br>
+}<br>
+
+deduplicate(['repeat', 'repeat', 'repeat', 'repeat', 'repeat']);  // 'repeat'<br>
+deduplicate([1,2,2,3,1,2,3,2]);  // 1, 2, 3<br>
+const obj = {some: {deep: 'object'}};<br>
+deduplicate([obj, obj]);  // obj<br>
+deduplicate([]);  // empty collection<br>
+</div>
+<script>
+let arr1= ['air','water','sun','water'];
+
+		console.log(arr1);
+		let y=arr1.join(' - ');
+		console.log(y);
+
+function deduplicate(array) {
+  // your code here...
+	const uniSet = new Set();
+	array.forEach((i)=>{uniSet.add(i)});
+
+	const iterator = uniSet.entries();
+
+	array=[];
+	for (let v of iterator){
+				array.push(v[0]);
+	};
+return array;
+};
+console.log(deduplicate(arr1));
+console.log(deduplicate(['repeat', 'repeat', 'repeat', 'repeat', 'repeat']));
+console.log(deduplicate([1,2,2,3,1,2,3,2]));
+
+const obj = {some: {deep: 'object'}};
+console.log(deduplicate([obj, obj]));
+console.log(deduplicate([]));
+console.log();
+</script>
+
+</body></html>

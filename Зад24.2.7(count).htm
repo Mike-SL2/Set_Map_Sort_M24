@@ -1,0 +1,53 @@
+﻿<!DOCTYPE HTML><html lang="ru"><head>	<meta charset="UTF-8">				
+<title>Зад24.2.7(count)</title>	</head>
+<style>.sBox{ background:palegreen; width:65%;padding:10px; margin:0 auto;}
+*{font-size:16px;font-family:Sans-serif;}
+h3{text-align:center;text-decoration:underline;text-underline-position:under;textUnderlinePosition='under';}
+.bold {font-weight:800;}
+</style>
+<body>
+<div class="sBox"> 
+<h3>Задание 24.2.7 (самопроверка)</h3>
+Напишите функцию для подсчёта количества элементов каждого вида <span class='bold'>в массиве</span> с использованием подходящих структур данных.<br>
+
+Обратите внимание, что функция должна работать не только с массивами примитивов, но и с массивами объектов.<br>
+
+Функция должна возвращать структуру данных, где ключами будут уникальные элементы входного массива, <br>
+а значениями — количество таких элементов во входном массиве:<br>
+<br>
+function count(array) {<br>
+  // your code here...<br>
+}<br>
+<br>
+count(['A', 'A', 'B', 'A', 'B']);  // A -> 3, B -> 2<br>
+count([]);  // empty collection<br>
+<br>
+const obj1 = {key: 'value'};<br>
+const obj2 = {};<br>
+count([obj1, obj2, obj1, obj1]);  // obj1 -> 3, obj2 -> 1<br>
+</div>
+<script>
+function count(array) {
+  // your code here...
+const m= new Map();
+let result  = 'empty collection';
+array.forEach((arrItem)=>{
+			let aux=1;
+			if (m.has(arrItem)) {aux = m.get(arrItem)+1;}
+			m.set(arrItem,aux);
+
+});
+if (m.size) {result = m;}
+console.log(result);
+return result;
+};
+
+count(['A', 'A', 'B', 'A', 'B']);  // A -> 3, B -> 2
+count([]);  // empty collection
+
+const obj1 = {key: 'value'};
+const obj2 = {};
+count([obj1, obj2, obj1, obj1]);  // obj1 -> 3, obj2 -> 1
+</script>
+
+</body></html>
