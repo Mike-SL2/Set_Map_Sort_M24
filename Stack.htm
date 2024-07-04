@@ -1,0 +1,72 @@
+﻿<!DOCTYPE HTML><html lang="ru"><head>	<meta charset="UTF-8">				
+<title>Stack </title>	</head>
+<style>.sBox{width:200px; height:100px; background:lime;display:flex; align-items:center; justify-content:center; }</style>
+<body>
+<div class="sBox">Stack  - Stack </div>
+<script>
+class Stack {
+  constructor() {
+    this._data = [];
+  }
+
+  push(item) {
+    // Добавить элемент в стек
+    this._data.push(item);
+    return item;
+  }
+
+  pop() {
+    // Извлечь элемент из стека
+    return this._data.pop();
+  }
+
+  get size() {
+    // Количество элементов в стеке
+    return this._data.length;
+  }
+
+  get head() {
+    // «голова» стека — верхний элемент в стеке
+    return this._data[this.size - 1];
+  }
+  get stk(){
+    // получить Stack
+    let rOut = [];
+    this._data.forEach((i)=>{rOut.push(i);});
+    return rOut;
+}
+  clear (){
+    // очистить Stack
+    this._data = [];
+    return this._data;
+}
+}
+
+const stack = new Stack();
+console.log('Количество элементов в стеке',stack.size); // 0
+console.log('«голова» стека — верхний элемент в стеке',stack.head); // undefined
+console.log('Извлечь элемент из стека',stack.pop());  // undefined
+	console.log('Количество элементов в стеке',stack.size);  // 0
+console.log('Добавить элемент в стек',stack.push(1));
+console.log('Добавить элемент в стек',stack.push(2));
+console.log('Добавить элемент в стек',stack.push(3));
+	console.log('Количество элементов в стеке',stack.size);  // 3
+		console.log('получить Stack',stack.stk);
+			console.log('очистить Stack',stack.clear());
+		console.log('получить Stack',stack.stk);
+console.log('Добавить элемент в стек',stack.push(1));
+console.log('Добавить элемент в стек',stack.push(2));
+console.log('Добавить элемент в стек',stack.push(3));
+		console.log('получить Stack',stack.stk);
+console.log('«голова» стека — верхний элемент в стеке',stack.head);  // 1
+console.log('Извлечь элемент из стека',stack.pop());  // 3
+	console.log('Количество элементов в стеке',stack.size);  // 2
+console.log('«голова» стека — верхний элемент в стеке',stack.head);  // 2
+console.log('Извлечь элемент из стека',stack.pop());  // 2
+console.log('Добавить элемент в стек',stack.push(4));
+console.log('Извлечь элемент из стека',stack.pop());  // 4
+console.log('Извлечь элемент из стека',stack.pop());  // 3
+ </script>
+
+
+</body></html>

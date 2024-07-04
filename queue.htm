@@ -1,0 +1,74 @@
+﻿<!DOCTYPE HTML><html lang="ru"><head>	<meta charset="UTF-8">				
+<title>queue</title>	</head>
+<style>.sBox{width:200px; height:100px; background:lime;display:flex; align-items:center; justify-content:center; }</style>
+<body>
+<div class="sBox">queue - очередь</div>
+<script>
+class Queue {
+  constructor() {
+    this._data = [];
+  }
+
+  insert(item) {
+    // Добавить элемент в очередь
+    this._data.unshift(item);
+    return item;
+  }
+
+  pop() {
+    // Извлечь элемент из очереди
+    return this._data.pop();
+  }
+
+  get size() {
+    // Количество элементов в очереди
+    return this._data.length;
+  }
+
+  get head() {
+    // «голова» очереди — первый элемент
+    return this._data[this.size - 1];
+  }
+  get que(){
+    // получить очередь
+    let rOut = [];
+    this._data.forEach((i)=>{rOut.push(i);});
+    return rOut;
+}
+  clear(){
+    // очистить очередь
+    this._data = [];
+    return this._data;
+}
+}
+
+const queue = new Queue();
+
+console.log('Количество элементов в очереди',queue.size);  // 0
+console.log('«голова» очереди — первый элемент',queue.head);  // undefined
+console.log('Извлечь элемент из очереди',queue.pop());  // undefined
+	console.log('Количество элементов в очереди',queue.size);  // 0
+console.log(' Добавить элемент в очередь',queue.insert(1));
+console.log(' Добавить элемент в очередь',queue.insert(2));
+console.log(' Добавить элемент в очередь',queue.insert(3));
+		console.log('получить очередь',queue.que);
+			console.log('очистить очередь',queue.clear());
+		console.log('получить очередь',queue.que);
+console.log(' Добавить элемент в очередь',queue.insert(1));
+console.log(' Добавить элемент в очередь',queue.insert(2));
+console.log(' Добавить элемент в очередь',queue.insert(3));
+		console.log('получить очередь',queue.que);
+console.log('Количество элементов в очереди',queue.size);   // 3
+console.log('«голова» очереди — первый элемент',queue.head);  // 1
+console.log('Извлечь элемент из очереди',queue.pop());  // 1
+	console.log('Количество элементов в очереди',queue.size);   // 2
+console.log('«голова» очереди — первый элемент',queue.head);  // 2
+console.log('Извлечь элемент из очереди',queue.pop());  // 2
+console.log(' Добавить элемент в очередь',queue.insert(4));
+console.log('Извлечь элемент из очереди',queue.pop());  // 3
+console.log('Извлечь элемент из очереди',queue.pop());;  // 4
+		console.log('получить очередь',queue.que);
+ </script>
+
+
+</body></html>
