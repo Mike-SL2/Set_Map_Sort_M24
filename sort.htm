@@ -1,0 +1,104 @@
+﻿<!DOCTYPE HTML><html lang="ru"><head>	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta charset="UTF-8">		
+				<link rel="icon" type="image/png" sizes="32x32" href="cubes.gif">  
+		<link rel="stylesheet" href="reset-MS.css">			
+<title>Алгоритмы сортировки</title>	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+				<meta http-equiv="Pragma" content="no-cache" />
+				<meta http-equiv="Expires" content="0" /></head>
+<body>
+Алгоритмы сортировки (no modifications)
+<script>
+function bubbleSort(array) {
+//360 ms on 25001 bytes array of byte
+  for (let i = 0; i < array.length; i++) {
+    // В конце уже отсортированные элементы, их можно исключить.
+    for (let j = 0; j < array.length - i - 1; j++) {
+      // Сравнение элементов: если пара элементов не отсортирована, меняем их местами.
+      if (array[j] > array[j + 1]) {
+        const tmp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = tmp;
+      }
+    }
+  }
+}
+//========================================================
+function quickSort(array) {
+// no pascal realization, no metered
+  if (array.length < 2) {
+    // Пустой массив или массив из одного элемента — не нуждается в сортировке.
+    return array;
+  }
+
+  // Выбираем опорный элемент (например, первый)
+  let pivot = array[0];
+  // Будем делить массив на три массива: левый (меньше опорного), правый (больше опорного), центральный (равен опорному).
+  const left = [];
+  const middle = [pivot];
+  const right = [];
+
+  // Проходим по массиву, не включая опорный элемент, и раскладываем элементы по подмассивам.
+  for (let i = 1; i < array.length; i++) {
+    if (pivot === array[i]) {
+      middle.push(array[i]);
+    } else if (pivot > array[i]) {
+      left.push(array[i]);
+    } else {
+      right.push(array[i]);
+    }
+  }
+
+  // Рекурсивно сортируем левый и правый подмассивы и возвращаем итоговую комбинацию элементов.
+  return quickSort(left).concat(middle, quickSort(right));
+}
+//======================================================================
+function merge(left, right) {
+  // Создаём массив, в котором будем соединять два подмассива.
+  const result = new Array(left.length + right.length);
+  // Создаём индексы, с помощью которых будем проходить по подмассивам.
+  let i = 0;
+  let j = 0;
+
+  // Проходим по подмассивам
+  while (i < left.length && j < right.length) {
+    // Выбираем меньший из двух элементов и помещаем его в итоговый массив.
+    if (left[i] < right[j]) {
+      array[i + j] = left[i];
+      i++;
+    } else {
+      array[i + j] = right[j];
+      j++;
+    }
+  }
+
+  // Добавляем оставшиеся элементы из левого подмассива, если правый закончился раньше.
+  while (i < left.length) {
+    array[i + j] = left[i];
+    i++;
+  }
+
+  // Добавляем оставшиеся элементы из правого подмассива, если левый кончился раньше.
+  while (j < right.length) {
+    array[i + j] = right[i];
+    j++;
+  }
+
+  return result;
+}
+
+function mergeSort(array) {
+  if (array.length < 2) {
+    // Пустой массив или массив из одного элемента — не нуждается в сортировке.
+    return array;
+  }
+
+  // Делим массив пополам
+  const middle = Math.round(array.length / 2);
+  const left = array.splice(0, middle);
+
+  // Рекурсивно сортируем каждую из половин и соединяем их
+  return merge(mergeSort(left),mergeSort(array));
+}
+
+
+</script></body></html>
