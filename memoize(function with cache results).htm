@@ -1,0 +1,45 @@
+﻿<!DOCTYPE HTML><html lang="ru"><head>	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta charset="UTF-8">		
+						
+<title>Memoize</title>	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+				<meta http-equiv="Pragma" content="no-cache" />
+				<meta http-equiv="Expires" content="0" /></head>
+<body><script>
+const getSquare = (a) => {
+  return a * a;
+}
+
+const concateStrings = (a, b) => {
+  return `${a}_${b}`;
+}
+/*	функция, которая возвращает мемоизированный вариант любой переданной функции.	*/
+const memoize = (func) => {
+  // используется общий кэш для всех функций, передаваемых в качестве аргумента
+const cache = {};
+return (...args) => {
+     //args - массив остаточных параметров
+	const cacheId = args.join(',');		//получение метки кэша (строка) для набора параметров функции
+    if (cache[cacheId]) {
+      // если такая метка есть в кэше, возвращаем значение ранее расчитанное функцией для этой метки
+	console.log('найдено в кэш по метке: ',cacheId);
+      return cache[cacheId];
+    } else {
+      console.log('вычисляем значение и записываем в кэш');
+      const result = func(...args);
+      cache[cacheId] = result;
+      return result;
+    }
+  }
+}
+
+const memoizedGetSquare = memoize(getSquare);
+const memoizedConcateStrings = memoize(concateStrings);
+
+console.log(memoizedGetSquare(3)); // значение вычисляется
+console.log(memoizedGetSquare(4)); // значение вычисляется
+console.log(memoizedGetSquare(3)); // значение берется из кэша
+
+console.log(memoizedConcateStrings('abc', 'bcd')) // значение вычисляется
+console.log(memoizedConcateStrings('aaa', 'bbb')) // значение вычисляется
+console.log(memoizedConcateStrings('abc', 'bcd')) // значение берется из кэша
+</script></body></html>
